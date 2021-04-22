@@ -326,7 +326,7 @@ function osm_network_downloader(download_method::Symbol)::Function
     elseif download_method == :polygon
         return osm_network_from_polygon
     else
-        throw(ErrorException("OSM network downloader $download_method does not exist"))
+        throw(ArgumentError("OSM network downloader $download_method does not exist"))
     end
 end
 

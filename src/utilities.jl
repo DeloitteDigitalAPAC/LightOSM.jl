@@ -15,7 +15,7 @@ function string_deserializer(format::Symbol)::Function
     elseif format == :json
         return JSON.parse
     else
-        throw(ErrorException("String deserializer for $format format does not exist"))
+        throw(ArgumentError("String deserializer for $format format does not exist"))
     end
 end
 
@@ -36,7 +36,7 @@ function file_deserializer(format::Symbol)::Function
     elseif format == :json
         return JSON.parsefile
     else
-        throw(ErrorException("File deserializer for $format format does not exist"))
+        throw(ArgumentError("File deserializer for $format format does not exist"))
     end
 end
 
@@ -138,7 +138,7 @@ Returns the common trailing element (first or last element) of two arrays if it 
 """
 function first_common_trailing_element(a1::AbstractArray{T}, a2::AbstractArray{T})::T where T <: Any
     intersection = intersect(trailing_elements(a1), trailing_elements(a2))
-    return length(intersection) >= 1 ? intersection[1] :  throw(ErrorException("No common trailinging elements between $a1 and $a2"))
+    return length(intersection) >= 1 ? intersection[1] : throw(ArgumentError("No common trailinging elements between $a1 and $a2"))
 end
 
 """
